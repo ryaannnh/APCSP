@@ -45,20 +45,20 @@ bool valid(string password)
         letter = password[i]; // All strings are array of chars. Therefore, can use array to reference word[i] and assign to individual char letter for further processing
         if (isalpha(letter))
         {
-            if (letter >= 65 && letter <= 90)
+            if (letter >= 65 && letter <= 90) // Can also use isupper(letter)
             {
                 upper = 1; // If ASCII shows uppercase number, make upper variable into 1 to show there is uppercase
             }
-            else if (letter >= 97 && letter <= 122)
+            else if (letter >= 97 && letter <= 122) // Can also use islower(letter)
             {
                 lower = 1; // If ASCII of letter is lowercase range, make lower variable into 1 to show valid
             }
         }
-        else if ((letter >= 33 && letter <= 47) || (letter >= 58 && letter <= 64) || (letter >= 91 && letter <= 96) || (letter >= 123 && letter <= 126))
+        else if ((letter >= 33 && letter <= 47) || (letter >= 58 && letter <= 64) || (letter >= 91 && letter <= 96) || (letter >= 123 && letter <= 126)) // Can also use ispunct(letter)
         {
             symbol = 1; // If ASCII is symbol range, make symbol variable into 1
         }
-        else if (letter >= 48 && letter <= 57)
+        else if (letter >= 48 && letter <= 57) // Can also use isnumber(letter)
         {
             number = 1; // If ASCII is number range, make number variable into 1
         }
