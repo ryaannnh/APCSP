@@ -1,6 +1,11 @@
 /*
 Objective: To implement a program that calculates the approximate grade level needed to comprehend some text, based on the Coleman-Liau index of text.
 
+Pseudocode:
+Function to find amt of words, sentences, letters
+Plug results into equation (float)
+Print Grade X/Before Grade 1/Grade 16+ depending on condition
+
 Ryan Ho
 1/11/2022
 */
