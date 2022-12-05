@@ -1,3 +1,38 @@
+/*
+Objective: Program to create ranked-choice voting system
+
+Pseudocode:
+Functions:
+
+vote
+With for loop, compare user input to names of all candidates with strcmp
+If name exists, update relevant preferences double array
+Return true if name exists, false if name doesn't exist
+
+tabulate
+Check whether candidate eliminated
+If not, add one vote value to that candidate, then break from loop
+If eliminated, proceed to next preference from input and repeat
+
+print_winner
+Check if vote total for each candidate is majority
+If majority, print their name and return true
+Else, return false
+
+find_min
+Update the minimum number of votes by comparing each value to existing min value. If less, update min
+
+is_tie
+If any number is not equal to min, means no tie, return false.
+If run through all but none aren't non equal, all values are the min which means there's a tie. Return true
+
+eliminate
+Run through every candidate's votes value. If same as min, eliminate.
+
+Ryan Ho
+12/5/22
+*/
+
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
