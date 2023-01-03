@@ -37,18 +37,19 @@ int main(void)
     int score1 = compute_score(word1); // Assign returned sum of points to score1
     int score2 = compute_score(word2); // Assign returned sum of points to score2
 
+
     // TODO: Print the winner
     if(score1 > score2) // If P1 has higher score than P2, P1 wins.
     {
-        printf("Winner is player 1!\n");
+        printf("Player 1 wins!\n");
     }
     else if(score2 > score1) // If P2 has higher score than P1, P2 wins.
     {
-        printf("Winner is player 2!\n");
+        printf("Player 2 wins!\n");
     }
     else // If P1&P2 have equal score, it is tie.
     {
-        printf("Tie!")
+        printf("Tie!");
     }
 }
 
