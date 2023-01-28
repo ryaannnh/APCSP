@@ -67,8 +67,7 @@ int main(int argc, char *argv[])
             fwrite(buffer, sizeof(BYTE), BLOCK_SIZE, output); // If successful, write the buffer onto the output
         }
     }
-     // Remove file name for next operation
-
+    // Remove file name for next operation
     if (output != NULL)
     {
         fclose(output);
