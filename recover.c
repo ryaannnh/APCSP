@@ -14,10 +14,8 @@ Ryan Ho
 #include <stdlib.h>
 #include <stdint.h>
 
-
 int main(int argc, char *argv[])
 {
-
     if (argc != 2) // Check for two command line arguments (program name and file name)
     {
         printf("Usage: ./recover card.raw\n");
@@ -38,7 +36,6 @@ int main(int argc, char *argv[])
         return 3;
     }
 
-
     FILE *f = fopen(argv[1], "r"); // Open the file named in cmd line with pointer named f in r mode
 
     if (f == NULL) // Check if file open is successful (check if file exists)
@@ -51,9 +48,18 @@ int main(int argc, char *argv[])
     {
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0) // If JPEG header detected
         {
+            if (output != NULL) // Closing output if already opened
+            {
+                fclose(output);
+            }
             //creating the file name
             sprintf(filename, "%03i.jpg", count); // Update into "filename" the number in count with 3 digits.jpg
             output = fopen(filename, "w"); // Create file with filename in writing mode, and link to "output" pointer
+            if (output == NULL)
+            {
+                printf("File creation failed. Please try again.\n");
+                return 3;
+            }
             count++;
         }
         if (output != NULL) // Check if file creation successful
@@ -61,8 +67,14 @@ int main(int argc, char *argv[])
             fwrite(buffer, sizeof(BYTE), BLOCK_SIZE, output); // If successful, write the buffer onto the output
         }
     }
-    free(filename); // Remove file name for next operation
+     // Remove file name for next operation
+
+    if (output != NULL)
+    {
+        fclose(output);
+    }
     fclose(f); // Close input for next operation
+    free(filename);
 
     return 0;
 }
