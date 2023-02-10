@@ -13,10 +13,10 @@ while flag: #repeat until flag is switched to false
 
 for i in range(height): #for "height" number of rows
     for p in range(height-i-1): #For loop to print spaces
-        print("  ", end = '') #Print two spaces without new line
+        print(" ", end = '') #Print two spaces without new line
     for j in range(i+1): #Print hashtags
         print("#", end = '')
-    print(" ", end='') #Print space between hashtag
+    print("  ", end='') #Print space between hashtag
     for k in range(i+1): #print remaining hashtag
         print("#", end = '')
     print() #print newline
