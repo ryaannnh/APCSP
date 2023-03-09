@@ -26,17 +26,17 @@ def Menu():
             printpattern()
             if (count >= len(word)): # Count tracks the number of correct letters guessed. Player wins when count = wordlength
                 os.system('clear')
-                print("You are the winner!\n")
-                scoreinput(5)
-                time.sleep(3)
-                input("Hit enter when you are ready to return to the menu: ") # Next line when any input entered
+                print("Congratulations, you won!")
+                scoreinput(round(((len(word))/2)*lives))
+                time.sleep(1)
+                input("\nHit enter when you are ready to return to the menu: ") # Next line when any input entered
                 Menu() # Return to menu if desired
             elif (lives <= 0): # Player loses if out of lives
                 os.system('clear')
                 print("You died. The correct word was -> ", end = '')
                 print(word)
                 print("Better luck next time~\n")
-                time.sleep(3)
+                time.sleep(1)
                 input("Hit enter when you are ready to return to the menu: ")
                 Menu() # Return to menu if desired
 
@@ -51,17 +51,17 @@ def Menu():
             printpattern()
             if (count >= len(word)):
                 os.system('clear')
-                print("You are the winner!\n")
-                scoreinput(10)
-                time.sleep(3)
-                input("Hit enter when you are ready to return to the menu: ") # Next line when any input entered
+                print("Congratulations, you won!")
+                scoreinput(round(((len(word))/2)*lives))
+                time.sleep(1)
+                input("\nHit enter when you are ready to return to the menu: ") # Next line when any input entered
                 Menu() # Return to menu if desired
             elif (lives <= 0):
                 os.system('clear')
                 print("You died. The correct word was ->", end = '')
                 print(word)
                 print("Better luck next time~\n")
-                time.sleep(3)
+                time.sleep(1)
                 input("Hit enter when you are ready to return to the menu: ") # Next line when any input entered
                 Menu() # Return to menu if desired
 
@@ -77,17 +77,17 @@ def Menu():
             printpattern()
             if (count >= len(word)):
                 os.system('clear')
-                print("You are the winner!\n")
-                scoreinput(20)
-                time.sleep(3)
-                input("Hit enter when you are ready to return to the menu: ") # Next line when any input entered
+                print("Congratulations, you won!")
+                scoreinput(round(((len(word))/2)*lives))
+                time.sleep(1)
+                input("\nHit enter when you are ready to return to the menu: ") # Next line when any input entered
                 Menu() # Return to menu if desired
             elif (lives <= 0):
                 os.system('clear')
                 print("You died. The correct word was ->", end = '')
                 print(word)
                 print("Better luck next time~\n")
-                time.sleep(3)
+                time.sleep(1)
                 input("Hit enter when you are ready to return to the menu: ") # Next line when any input entered
                 Menu() # Return to menu if desired
     elif '4' in selection:
@@ -95,8 +95,9 @@ def Menu():
         try:
             with open("scoreBoard.txt", "r") as scorefile:
                 lines = scorefile.readlines()
-            lines.sort()
-            for line in lines:
+            lines.sort(reverse=True)
+            for b in range(3):
+                line = lines[b]
                 print(line)
             input("Hit enter to return to the menu:")
         except FileNotFoundError:
@@ -155,21 +156,21 @@ def wordselect(difficulty):
 def instructions():
         os.system('clear')
         print("Welcome to WordGuess!\n\n") # Print instructions with break in between lines
-        time.sleep (2)
+        time.sleep (1)
         print("The objective of the game is for you to correctly guess a randomly chosen word.\n\n")
-        time.sleep (2)
+        time.sleep (1)
         print("At the start of the game, blank dashes will be displayed. This shows the length of your word.\n\n")
-        time.sleep (2)
+        time.sleep (1)
         print("Simply enter a letter you believe may be in the word, and hit enter. You may only enter a single letter at once!\n\n")
-        time.sleep (2)
+        time.sleep (1)
         print("But, be careful. You only have a few chances to pick a wrong word.\n\n")
-        time.sleep (2)
+        time.sleep (1)
         print("Your remaining lives are displayed on the top right corner. Every time you make a wrong guess, a life will be deducted.\n\n")
-        time.sleep (2)
+        time.sleep (1)
         print("The game will end when you either fully guess the word, or you run out of lives.\n\n")
+        time.sleep(1)
+        print("If you win, you can enter the leaderboard. Your score is based on the word length and lives you have left:\nHalf of Word Length * Remaining Lives")
         time.sleep (2)
-        print("At any time, feel free to enter the number '0' for the menu.\n\n")
-        time.sleep (3)
         try:
             input("Hit enter when you are ready to return to the menu: ")
             Menu() # Return to calling function when done with instructions
@@ -212,13 +213,15 @@ def guessFunction():
             return # Return to calling function
     except ValueError:
         lives = lives - 1 # Backup of reduce lives
-        return
 
 def scoreinput(addscore):
+    print("\nYour score is " + str(addscore) + ".\n") # Print user score
     date = datetime.datetime.now() # Store date in 'date' variable
-    name = input("What is your name: \n") # User input to get user's name
-    scoreLine = str(addscore) + "\t" + name + "\t" + date.strftime('%m/%d/%Y' + '\n') # Convert score to a string and create the output sequence. Score first makes it easiest to sort
+    name = input("What is your name: ") # User input to get user's name
+    scoreLine = str(addscore) + "\t" + name + "\t\t" + date.strftime('%m/%d/%Y' + '\n') # Convert score to a string and create the output sequence. Score first makes it easiest to sort
     with open("scoreBoard.txt", "a") as file:
         file.write(scoreLine)
 
 Menu() # Running the menu function which is like the main. Must be after all functions.
+
+
