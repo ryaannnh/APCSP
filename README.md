@@ -7,5 +7,8 @@ For details, feel free to open each code file and read its description.
 ## Topics Covered
 - Variables and data types
 - Conditionals and loops
+- Functions and global variables
 - User input and output
 - Basic game logic
+- File handling
+- Modules and libraries
